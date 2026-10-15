@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What's Behind the 3 AM Wake-Up? A 4-Question Check</title><meta name="robots" content="noindex">
+<style>
+:root{--ink:#1a1a1a;--muted:#666;--bg:#fff;--accent:#2f4a7a;--line:#e5e5e5}
+*{box-sizing:border-box}body{margin:0;font:18px/1.6 Georgia,serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+h1,h2,h3,.btn,.ft,.label,.top{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+h1{font-size:clamp(26px,6vw,38px);line-height:1.2;margin:.4em 0}
+img{max-width:100%;height:auto;display:block;border-radius:6px}
+.btn{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:700;font-size:20px;padding:18px;border-radius:8px;text-decoration:none;margin:28px 0}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);padding:8px 0}
+.top{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.top img{height:32px;width:auto;border-radius:0}
+.ft{font-size:12px;color:var(--muted);border-top:1px solid var(--line);margin-top:48px;padding:24px 0}
+.ft a{color:var(--muted)}
+</style>
+<style>
+.q{display:none}.q.on{display:block}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-size:18px;padding:16px;margin:10px 0;border:2px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+.opt:hover,.opt:focus{border-color:var(--accent)}
+.bar{height:6px;background:var(--line);border-radius:3px;margin:16px 0}.bar i{display:block;height:100%;background:var(--accent);border-radius:3px;width:0;transition:width .3s}
+</style>
+</head><body><div class="wrap">
+<div class="top"><img src="../assets/logo.svg" alt="JMO Digital Assets, LLC" width="120" height="32"></div>
+<h1>What's Behind the 3 AM Wake-Up?</h1>
+<p>Four quick questions about your evenings and your bedroom. It takes about 30 seconds.</p>
+<div class="bar"><i id="bar"></i></div>
+<!--
+QUESTIONS: one <div class="q"> per question, 3-5 questions.
+COMPLIANCE: no sensitive data (health details, income, SSN). Answers stay in the
+browser and are never sent anywhere. Results must not promise outcomes.
+Example:
+<div class="q"><h2>Question text?</h2>
+  <button class="opt" data-k="a">Option A</button>
+  <button class="opt" data-k="b">Option B</button></div>
+-->
+<div class="q"><h2>In the 2-3 hours before bed, which of these is most common for you?</h2><button class="opt" data-k="evening">A late dinner or snacks</button><button class="opt" data-k="evening">A drink or two</button><button class="opt" data-k="evening">Coffee, tea, or soda after lunch</button><button class="opt" data-k="none">None of these</button></div>
+<div class="q"><h2>When you wake around 3 AM, what usually happens next?</h2><button class="opt" data-k="stress">My mind starts running through tomorrow</button><button class="opt" data-k="stress">I check the time, then keep checking it</button><button class="opt" data-k="room">I feel too warm</button><button class="opt" data-k="room">Light or noise seems to wake me</button></div>
+<div class="q"><h2>How does your bedroom feel at night?</h2><button class="opt" data-k="room">Warm or stuffy</button><button class="opt" data-k="room">Some light gets in</button><button class="opt" data-k="room">There&#x27;s noise I can hear</button><button class="opt" data-k="none">Cool, dark, and quiet</button></div>
+<div class="q"><h2>How do your days usually end?</h2><button class="opt" data-k="stress">Busy right up to bedtime</button><button class="opt" data-k="stress">Still thinking about work or worries</button><button class="opt" data-k="evening">Eating or drinking close to bedtime</button><button class="opt" data-k="none">A slow, calm wind-down</button></div>
+<div class="q" id="result">
+  <h2>Here's what your answers suggest</h2>
+  <p id="rt" style="font-size:20px"></p>
+<p id="rd"></p>
+<p>The guide works on all three areas because they often stack up. It includes a <strong>3 AM Suspects Checklist</strong> with 19 yes-or-no questions and a decision tree to sort out which apply to you. It also has a 15-minute setup for tonight and a printable 3 AM Card for your nightstand.</p>
+<p style="font-size:15px;color:#666">One-time price of $7. You get the PDF right away. An optional $17 "3 AM Toolkit" is offered at checkout, and you can skip it. No subscription. If the guide isn't worth $7 to you, reply to your receipt email for a refund and keep the guide. Sold by Sleep Smarter, not by this site.</p>
+<p style="font-size:14px;color:#666">This quiz is for reflection only. It isn't a diagnosis or medical advice. Your answers stay in your browser and aren't sent or stored anywhere.</p>
+<script>
+(function(){var t={evening:0,stress:0,room:0};
+var R={evening:["Your answers lean toward <strong>evening timing</strong>.","The guide's Evening Timing Planner covers caffeine, meal, fluid, and alcohol cutoffs, and there's a 3 AM snack decision tree too."],
+stress:["Your answers lean toward <strong>leftover daytime stress</strong>.","The guide includes a 90-minute Wind-Down Schedule, a \"Worry Park\" sheet, and five in-bed tools like 4-7-8 breathing and cognitive shuffling."],
+room:["Your answers lean toward <strong>your bedroom setup</strong>.","The guide's 10-minute bedroom audit sorts fixes by cost: free, under about $50, and later."],
+mix:["Your answers point to <strong>a mix of causes</strong>.","That's the pattern the guide is built for: it treats 3 AM waking as a stack of small causes, not one thing."]};
+document.addEventListener('click',function(e){var k=e.target.getAttribute&&e.target.getAttribute('data-k');if(!k)return;if(t[k]!==undefined)t[k]++;
+var a=Object.keys(t).sort(function(x,y){return t[y]-t[x]}),top=a[0];if(t[top]===0||t[a[0]]===t[a[1]])top='mix';
+document.getElementById('rt').innerHTML=R[top][0];document.getElementById('rd').innerHTML=R[top][1];});})();
+</script>
+  <a class="btn offer-link" href="https://www.sleepsmarter.io/3am?utm_source=direct&amp;utm_medium=direct&amp;utm_campaign=sleepsmarter&amp;utm_content=%2Fsleep-reset&amp;lead_source=%2Fsleep-reset" rel="nofollow sponsored">See the $7 guide</a>
+</div>
+<footer class="ft">
+  <p>Disclosure: We may receive compensation when you click links on this page and buy.</p>
+  <p>This site is not part of the Facebook website or Meta Platforms, Inc. Additionally, this site is not endorsed by Facebook in any way. FACEBOOK is a trademark of Meta Platforms, Inc.</p>
+  <p>Results vary. Individual results are not guaranteed.</p>
+  <p>This page is for general information and is not medical advice. See a doctor if you snore heavily, gasp or stop breathing in your sleep, or have ongoing insomnia.</p>
+  <p><a href="../privacy.html">Privacy Policy</a> · <a href="../terms.html">Terms</a> · <a href="mailto:support@jmodigitalassets.com">Contact</a></p>
+  <p>&copy; 2026 JMO Digital Assets, LLC</p>
+</footer>
+<script src="../assets/tracking.js" defer></script>
+</div>
+<script>
+(function(){var qs=[].slice.call(document.querySelectorAll('.q')),i=0,bar=document.getElementById('bar');
+function show(n){qs.forEach(function(q,j){q.classList.toggle('on',j===n)});bar.style.width=Math.round(n/(qs.length-1)*100)+'%';window.scrollTo(0,0)}
+document.addEventListener('click',function(e){if(e.target.classList.contains('opt')){i=Math.min(i+1,qs.length-1);show(i)}});show(0)})();
+</script>
+</body></html>
